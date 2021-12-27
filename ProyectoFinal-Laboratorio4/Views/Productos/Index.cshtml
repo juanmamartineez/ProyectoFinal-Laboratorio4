@@ -1,0 +1,98 @@
+﻿@model ProyectoFinal_Laboratorio4.Models.ProductoView
+
+@{
+    ViewData["Title"] = "Lista de productos";
+}
+
+<h1>Lista de productos</h1>
+
+<p>
+    <a asp-action="Create">Crear nuevo producto</a>
+</p>
+
+<div class="flex-row text-center">
+    <form asp-action="Index" method="get">
+        <p>
+            Nombre: <input type="text" asp-for="@Model.Nombre" name="filtrarNombre" />
+            Marca: <select class="form-select" name="filtrarMarca" asp-items="@Model.Marca"><option value="Todas">-</option></select>
+            Categoría: <select class="form-select" name="filtrarCategoría" asp-items="@Model.Categoría"><option value="Todas">-</option></select>
+            <input type="submit" class="btn btn-secondary btn-sm" value="Filtrar" />
+        </p>
+
+    </form>
+</div>
+
+<div class="d-flex justify-content-around">
+    <table class="table table-responsive-md table-bordered text-center">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Producto[0].Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Producto[0].Precio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Producto[0].Descripción)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Producto[0].Imagen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Producto[0].Favorito)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Producto[0].CategoríaProducto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Producto[0].MarcaProducto)
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Producto)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Precio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripción)
+                    </td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Imagen))
+                        {
+                            <img src="~/images/productos/@item.Imagen" class="img-thumbnail"
+                                 style="height:50px; width:50px" asp-append-version="true" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Favorito)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoríaProducto.Descripción)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MarcaProducto.Nombre)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Volver a la lista principal</a>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="~/js//imagePreview.js"></script>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ProyectoFinal_Laboratorio4.Models.ProveedorProducto>
+
+@{
+    ViewData["Title"] = "Lista: Proveedor - Producto";
+}
+
+<h1>Lista: Proveedor - Producto</h1>
+
+<p>
+    <a asp-action="Create">Crear: Proveedor - Producto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proveedor.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto.Nombre)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> 
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Volver a la lista principal</a>
+</div>

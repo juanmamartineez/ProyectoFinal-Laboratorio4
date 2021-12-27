@@ -1,0 +1,72 @@
+﻿@model ProyectoFinal_Laboratorio4.Models.Producto
+
+@{
+    ViewData["Title"] = "Editar producto";
+}
+
+<h1>Editar producto</h1>
+
+<h4>Producto:</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label"></label>
+                <input asp-for="Precio" class="form-control" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripción" class="control-label"></label>
+                <input asp-for="Descripción" class="form-control" />
+                <span asp-validation-for="Descripción" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Imagen</label><br/>
+                <img src="~/images/productos/@Model.Imagen" id="imagen" class="img-thumbnail" style="max-height:90px; max-width:90px" asp-append-version="true"/>
+                <br/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Seleccione una imagen</label>
+                <input asp-for="Imagen" type="file" accept="image/jpeg" id="selectImg" />
+            </div>
+            <input type="hidden" asp-for="Imagen"/>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Favorito" /> @Html.DisplayNameFor(model => model.Favorito)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoríaId" class="control-label"></label>
+                <select asp-for="CategoríaId" class="form-control" asp-items="ViewBag.CategoríaId"></select>
+                <span asp-validation-for="CategoríaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MarcaId" class="control-label"></label>
+                <select asp-for="MarcaId" class="form-control" asp-items="ViewBag.MarcaId"></select>
+                <span asp-validation-for="MarcaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="~/js//imagePreview.js"></script>

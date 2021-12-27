@@ -1,0 +1,33 @@
+﻿@model ProyectoFinal_Laboratorio4.Models.ProveedorProducto
+
+@{
+    ViewData["Title"] = "Borrar: Proveedor - Producto";
+}
+
+<h1>Borrar: Proveedor - Producto</h1>
+
+<h3>¿Estás seguro de que quieres eliminar el Proveedor - Producto?</h3>
+<div>
+    <h4>Proveedor - Producto:</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Proveedor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Proveedor.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Producto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Producto.Nombre)
+        </dd>
+    </dl>
+
+    <form method="post" asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Borrar" class="btn btn-danger" />
+        <a asp-action="Index">Volver a la lista</a>
+    </form>
+</div>

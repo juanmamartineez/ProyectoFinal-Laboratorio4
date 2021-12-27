@@ -1,0 +1,25 @@
+﻿@model ProyectoFinal_Laboratorio4.Models.Categoría
+
+@{
+    ViewData["Title"] = "Borrar categoría";
+}
+
+<h3>¿Estás seguro de que quieres eliminar esta categoría?</h3>
+<div>
+    <h4>Categoría:</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripción)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descripción)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Borrar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver a la lista</a>
+    </form>
+</div>

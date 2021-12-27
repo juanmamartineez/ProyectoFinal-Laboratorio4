@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ProyectoFinal_Laboratorio4.Models.Producto>
+@{
+    ViewData["Title"] = "Página de inicio";
+}
+
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Sistema de productos</h1>
+    </div>
+
+    <h3>Productos favoritos:</h3>
+
+    <div id="carouselExample" class="carousel slide border-0" data-ride="carousel">
+        <div class="carousel-inner">
+            @{ int i = 0; }
+
+            @foreach (var item in Model)
+            {
+                @if (item.Favorito)
+                {
+                    i++;
+
+                    var active = i == 1 ? "active" : "";
+
+                    <div class="carousel-item @active">
+                        <a asp-controller="Productos" asp-action="Details" asp-route-id="@item.Id">
+                            <img src="~/images/productos/@item.Imagen" class="img-thumbnail d-block"
+                                 style="height:460px; width:100%" asp-append-version="true" />
+                        </a>
+                    </div>
+
+                }
+            }
+        </div>
+        <a href="#carouselExample" class="carousel-control-prev" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+        <a href="#carouselExample" class="carousel-control-next" role="button" data-slide="prev">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
+    </div>
+</div>
